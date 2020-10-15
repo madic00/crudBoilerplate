@@ -38,6 +38,19 @@
                 return "Query failed: " . $stmt->errorInfo()[2];
             }
         }
+
+        public function execQueryStmt($sql, $data = []) {
+            $stmt = $this->conn->prepare($sql);
+
+            try {
+                return $stmt->execute($data);
+            } catch (PDOException $ex) {
+                return "Query failed: " . $stmt->errorInfo()[2];
+            }
+
+        }
+
+
     }
 
     $db = new Database();

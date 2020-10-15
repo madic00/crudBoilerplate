@@ -11,8 +11,7 @@
         public static function getSingle($id) {
             $sql = "SELECT * FROM " . static::$dbTable . " WHERE id = $id LIMIT 1";
 
-            $row = static::getByQuery($sql)[0];
-            return $row;
+            return empty(static::getByQuery($sql)) ? null : static::getByQuery($sql)[0];
         }
 
         public static function getByQuery($sql) {
@@ -65,7 +64,7 @@
             $sql = "INSERT INTO " . static::$dbTable . " (" . implode(",", array_keys($props)) . ")";
             $sql .= " VALUES ('" . implode("','", array_values($props)) . "')";
 
-            $res = $db->execQuery($sql);
+            $res = $db->execQueryStmt($sql);
 
             if(is_array($res)) {
                 $this->id = $db->lastInsertId();
@@ -74,7 +73,6 @@
             } else {
                 return $res;
             }
-
 
         }
 
@@ -92,7 +90,7 @@
             $sql .= implode(",", $propPairs);
             $sql .= " WHERE id= " . $this->id;
 
-            return $db->execQuery($sql);
+            return $db->execQueryStmt($sql);
             
         }
 
@@ -101,7 +99,7 @@
 
             $sql = "DELETE FROM " . static::$dbTable . " WHERE id = {$this->id}";
 
-            return $db->execQuery($sql);
+            return $db->execQueryStmt($sql);
         }
 
         public static function countAll() {

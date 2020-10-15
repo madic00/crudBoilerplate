@@ -1,10 +1,3 @@
-<?php 
-
-    ob_start();
-    require_once "models/init.php";
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
