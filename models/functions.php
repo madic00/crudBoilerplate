@@ -30,4 +30,16 @@
         header("Location: {$location}");
     }
 
+    function jsonHeaders() {
+        header("Content-Type: application/json");
+    }
+
+    function goodHttpResponse() {
+        http_response_code(200);
+    }
+
+    function badHttpRequest() {
+        http_response_code(400);
+    }
+
 ?>

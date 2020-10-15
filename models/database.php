@@ -50,7 +50,6 @@
 
         }
 
-
     }
 
     $db = new Database();
