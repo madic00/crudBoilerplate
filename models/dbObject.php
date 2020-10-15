@@ -66,12 +66,8 @@
 
             $res = $db->execQueryStmt($sql);
 
-            var_dump($res);
-
             if($res) {
                 $this->id = $db->lastInsertId();
-
-                var_dump($db->lastInsertId());
 
                 return true;
             } else {
